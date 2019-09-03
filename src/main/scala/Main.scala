@@ -7,7 +7,13 @@ import java.io.{ FileOutputStream, OutputStream }
 /** A simple example of using the Google text-to-speech service */
 
 object Main extends App {
-  val testText = "Ahoj svet!"
+  val testText = """<speak>
+                      <audio src="https://storage.googleapis.com/org_mackler_sounds/rollout24k.mp3">
+                        nefunguje
+                        <break time="3s"/>
+                      </audio>
+                      Ahoj svet!
+                    </speak>"""
   val textToSpeechClient: TextToSpeechClient = TextToSpeechClient.create()
 
   // TODO: If there are exceptions in both the try-block and the
@@ -19,7 +25,7 @@ object Main extends App {
   try {
     // Set the text input to be synthesized
     val input: SynthesisInput = SynthesisInput.newBuilder().
-                                setText(testText).
+                                setSsml(testText).
                                 build();
 
     // Build the voice request, select the language code ("sk-SK") and the ssml voice gender
