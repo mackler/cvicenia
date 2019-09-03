@@ -11,28 +11,16 @@ object Main extends App {
                       Ahoj svet!
                     </speak>"""
 
-  // TODO: If there are exceptions in both the try-block and the
-  // finally-block, then the latter will “overthrow” the former and
-  // that exception will be lost.
-  // Search StackOverflow for "scala try-with-resources" for
-  // workarounds.
-
-  try {
-    val outputFilename = "output.mp3"
-    val out: OutputStream = new FileOutputStream(outputFilename)
-    // TODO: see comment above regarding try-with-resources in Scala.
-    try {
-      out.write(Speaker.textToSpeech(testText))
-      println(s"Audio content written to file $outputFilename")
-    } finally {
-      out.close()
+  if (args.length < 1)
+    System.err.println("need at least one exercise")
+  else {
+    println(s"processing exercise ${args(0)}")
+    val items = Exercise.read(args(0))
+    items foreach {
+      println
     }
-
-  } catch {
-    case t: Throwable => println(s"Fail: ${t.getMessage}")
-  } finally {
-    Speaker.closeClient()
   }
 
-  println()
+  Speaker.closeClient()
+
 }
