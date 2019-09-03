@@ -15,7 +15,7 @@ object Speaker {
 
     
   val audioConfig: AudioConfig = AudioConfig.newBuilder().
-                                 setAudioEncoding(AudioEncoding.MP3).
+                                 setAudioEncoding(AudioEncoding.LINEAR16).
                                  build()
 
   /** Convert the given SSML String to speech audio. */

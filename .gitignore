@@ -1,6 +1,7 @@
 target
 trash
 *~
-output.mp3
+*.mp3
+*.wav
 .#*
 \#*#
