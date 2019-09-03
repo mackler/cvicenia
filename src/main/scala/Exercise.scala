@@ -1,7 +1,10 @@
 package org.mackler.cvičenie
 
+import javax.sound.sampled.AudioInputStream
+import ws.schild.jave.{ Encoder, AudioAttributes, EncodingAttributes, MultimediaObject }
+
 import scala.io.Source
-import javax.sound.sampled.AudioFileFormat.Type._
+import javax.sound.sampled.AudioFileFormat.Type.WAVE
 import javax.sound.sampled.AudioSystem
 import java.io.{ File, FileOutputStream, OutputStream }
 
@@ -17,17 +20,36 @@ object Exercise {
       }
   }
 
-import javax.sound.sampled.AudioInputStream
   def write(name: String, audioContent: AudioInputStream) {
-    val outputFilename = name + ".wav"
-//    val out: OutputStream = new FileOutputStream(outputFilename)
+    val outputFilenameWav = name + ".wav"
+    val wavFile = new File(outputFilenameWav)
+    val outputFilenameMp3 = name + ".mp3"
+    val mp3File = new File(outputFilenameMp3)
+
     try {
       AudioSystem.write(audioContent,
-//        WAVE,
-//javax.sound.sampled.AudioSystem.getAudioFileTypes.apply(0),
         javax.sound.sampled.AudioFileFormat.Type.WAVE,
-        new File(outputFilename))
-      println(s"wrote $outputFilename")
+        wavFile
+      )
+      println(s"wrote $outputFilenameWav")
+
+      // convert WAV file to MP3file
+      val audio = new AudioAttributes()
+      audio.setCodec("libmp3lame")
+      audio.setBitRate(32000);
+      audio.setChannels(1)
+      audio.setSamplingRate(24000);
+      
+      val attrs = new EncodingAttributes()
+      attrs.setFormat("mp3");
+      attrs.setAudioAttributes(audio)
+
+      // encode and save mp3 file
+      val encoder = new Encoder()
+      encoder.encode(new MultimediaObject(wavFile), mp3File, attrs);
+
+      wavFile.delete()
+
     } catch {
       case t: Throwable => System.err.println(s"error writing $name: ${t.getMessage}")
     } finally {
