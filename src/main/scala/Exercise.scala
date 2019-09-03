@@ -22,9 +22,16 @@ object Exercise {
 
   def write(name: String, audioContent: AudioInputStream) {
     val outputFilenameWav = name + ".wav"
-    val wavFile = new File(outputFilenameWav)
     val outputFilenameMp3 = name + ".mp3"
-    val mp3File = new File(outputFilenameMp3)
+
+    val outputDirectory = new File("output")
+    if (outputDirectory.exists && !outputDirectory.isDirectory)
+      throw new Exception(s"output is not a directory")
+    else if (!outputDirectory.exists)
+      outputDirectory.mkdir()
+
+    val wavFile = new File(outputDirectory, outputFilenameWav)
+    val mp3File = new File(outputDirectory, outputFilenameMp3)
 
     try {
       AudioSystem.write(audioContent,
