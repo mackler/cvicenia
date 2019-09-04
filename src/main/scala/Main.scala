@@ -18,11 +18,11 @@ object Main extends App {
     (0 until items.length) foreach { itemNumber =>
       val item = items(itemNumber)
       val q: Array[Byte] =
-        textToSpeech(s"<speak>${bell}${item.prompt}<break time='2s' />${item.question}</speak>")
-      val a: Array[Byte] = textToSpeech(s"<speak>${item.answer}</speak>")
+        textToSpeech(s"<speak> ${bell} ${item.prompt} <break time='2s'/> ${item.question} </speak>")
+      val a: Array[Byte] = textToSpeech(s"<speak> ${item.answer} </speak>")
       val joined = Joiner.join(q, a)
-      val itemName: String = exerciseName + "-" + (itemNumber + 1)
-      Exercise.write(itemName, joined)
+      val itemName: String = exerciseName + "-" + itemNumber
+      Exercise.write(exerciseName, itemName, joined)
       joined.close()
       println(s"wrote $itemName")
     }

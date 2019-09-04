@@ -12,22 +12,25 @@ object Exercise {
 
   case class Item(prompt: String, question: String, answer: String)
 
+  /** Read three-part items from a tab-separated file, ignoring lines that are
+    * either empty or begin with a '#' character. */
   def read(name: String): Seq[Item] = {
-    Source.fromResource(name + ".tsv").getLines.toSeq.filter(_(0) != '#').
-      map { i =>
+    Source.fromResource(name + ".tsv").getLines.toSeq.filter { l =>
+      l.length > 0 && l(0) != '#'
+    } map { i =>
         val elems = i.split('\t')
         Item(elems(0), elems(1), elems(2))
       }
   }
 
-  def write(name: String, audioContent: AudioInputStream) {
-    val outputFilenameWav = name + ".wav"
-    val outputFilenameMp3 = name + ".mp3"
+  /** Write the given audio content as an MP3 file,
+    * named based on the exercise name and item number. */
+  def write(exerciseName: String, itemName: String, audioContent: AudioInputStream) {
+    val outputFilenameWav = itemName + ".wav"
+    val outputFilenameMp3 = itemName + ".mp3"
 
-    val outputDirectory = new File("output")
-    if (outputDirectory.exists && !outputDirectory.isDirectory)
-      throw new Exception(s"output is not a directory")
-    else if (!outputDirectory.exists)
+    val outputDirectory = new File("output/" + exerciseName)
+    if (!outputDirectory.exists)
       outputDirectory.mkdir()
 
     val wavFile = new File(outputDirectory, outputFilenameWav)
@@ -58,7 +61,7 @@ object Exercise {
       wavFile.delete()
 
     } catch {
-      case t: Throwable => System.err.println(s"error writing $name: ${t.getMessage}")
+      case t: Throwable => System.err.println(s"error writing $itemName: ${t.getMessage}")
     } finally {
       audioContent.close()
     }
