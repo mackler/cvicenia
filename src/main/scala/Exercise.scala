@@ -30,8 +30,10 @@ object Exercise {
     val outputFilenameMp3 = itemName + ".mp3"
 
     val outputDirectory = new File("output/" + exerciseName)
-    if (!outputDirectory.exists)
-      outputDirectory.mkdir()
+    if (!outputDirectory.exists) {
+      outputDirectory.mkdirs()
+      println(s"created directory ${outputDirectory}")
+    }
 
     val wavFile = new File(outputDirectory, outputFilenameWav)
     val mp3File = new File(outputDirectory, outputFilenameMp3)
