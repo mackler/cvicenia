@@ -4,7 +4,7 @@ import Speaker.textToSpeech
 import java.io.{ FileOutputStream, OutputStream }
 
 object Main extends App {
-  val bell = """<audio src="https://storage.googleapis.com/org_mackler_sounds/rollout24k.mp3">
+  val bell = """<audio src="https://storage.googleapis.com/org_mackler_sounds/rollout.mp3">
                   <break time="3s" />
                 </audio>"""
 
