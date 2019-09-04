@@ -11,6 +11,7 @@ object Generator {
   def apply(exerciseName: String) {
     println(s"processing exercise ${exerciseName}")
     val items: Seq[Exercise.Item] = Exercise.read(exerciseName)
+    val countWidth = (items.length - 1).toString.length
     println(s"there are ${items.length} items")
     (0 until items.length) foreach { itemNumber =>
       val item = items(itemNumber)
@@ -18,10 +19,9 @@ object Generator {
         textToSpeech(s"<speak> ${bell} ${item.prompt} <break time='2s'/> ${item.question} </speak>")
       val a: Array[Byte] = textToSpeech(s"<speak> ${item.answer} </speak>")
       val joined = Joiner.join(q, a)
-      val itemName: String = exerciseName + "-" + itemNumber
+      val itemName: String = exerciseName + "-" + s"%0${countWidth}d".format(itemNumber)
       Exercise.write(exerciseName, itemName, joined)
       joined.close()
-      println(s"wrote $itemName")
     }
   }
 }

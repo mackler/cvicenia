@@ -43,7 +43,6 @@ object Exercise {
         javax.sound.sampled.AudioFileFormat.Type.WAVE,
         wavFile
       )
-      println(s"wrote $outputFilenameWav")
 
       // convert WAV file to MP3file
       val audio = new AudioAttributes()
@@ -62,6 +61,7 @@ object Exercise {
 
       wavFile.delete()
 
+      println(s"wrote $mp3File")
     } catch {
       case t: Throwable => System.err.println(s"error writing $itemName: ${t.getMessage}")
     } finally {
