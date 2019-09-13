@@ -8,36 +8,49 @@ import javax.sound.sampled.AudioSystem.getAudioInputStream
 
 object Joiner {
 
-  def join(first: Array[Byte], second: Array[Byte]): AudioInputStream = {
+  def join(first: Array[Byte], second: Array[Byte], third: Array[Byte]): AudioInputStream = {
     val firstBais = new ByteArrayInputStream(first)
-    val secondBais = new ByteArrayInputStream(second)
     val firstAis = getAudioInputStream(firstBais)
-    val secondAisOne = getAudioInputStream(secondBais)
-    val secondAisTwo = getAudioInputStream(new ByteArrayInputStream(second))
+    val secondBais = new ByteArrayInputStream(second)
+    val secondAis = getAudioInputStream(secondBais)
+    val thirdBais = new ByteArrayInputStream(third)
+    val thirdAis = getAudioInputStream(thirdBais)
 
-    val secondFrameLength = secondAisOne.getFrameLength
-    val silenceByteLength = secondFrameLength * secondAisOne.getFormat.getFrameSize * 1.5
-    val silentWavBytes: Array[Byte] =
+    val secondFrameLength = secondAis.getFrameLength
+    val thirdFrameLength = thirdAis.getFrameLength
+
+    def silentWavBytes(ais: AudioInputStream): Array[Byte] = {
+      val silenceByteLength = ais.getFrameLength * ais.getFormat.getFrameSize * 1.5
       first.take(44) ++ Array.fill[Byte](silenceByteLength.toInt)(0)
-    val silenceOne = getAudioInputStream(new ByteArrayInputStream(silentWavBytes))
-    val silenceTwo = getAudioInputStream(new ByteArrayInputStream(silentWavBytes))
-    val silenceThree = getAudioInputStream(new ByteArrayInputStream(silentWavBytes))
+    }
+
+    // this is the duraction of the answer spoken slowly
+    val silenceBytes1 = silentWavBytes(secondAis)
+    // this is the duraction of the answer repeated normally
+    val silenceBytes2 = silentWavBytes(thirdAis)
+
+    val silenceOne = getAudioInputStream(new ByteArrayInputStream(silenceBytes1))
+    val silenceTwo = getAudioInputStream(new ByteArrayInputStream(silenceBytes1))
+    val silenceThree = getAudioInputStream(new ByteArrayInputStream(silenceBytes2))
     val toBeJoined =
-      Iterator(firstAis, silenceOne, secondAisOne, silenceTwo, secondAisTwo, silenceThree)
+      Iterator(firstAis, silenceOne, secondAis, silenceTwo, thirdAis, silenceThree)
 
     val joined: AudioInputStream = new AudioInputStream(
       new SequenceInputStream(toBeJoined.asJavaEnumeration),
       firstAis.getFormat,
-      firstAis.getFrameLength + (secondFrameLength * 6.5).toInt
+      firstAis.getFrameLength + (secondFrameLength * 4).toInt + (thirdFrameLength * 2.5).toInt
     )
+
     silenceThree.close()
     silenceTwo.close()
     silenceOne.close()
-    secondAisOne.close()
-    secondAisTwo.close()
+    thirdAis.close()
+    secondAis.close()
     firstAis.close()
+    thirdBais.close()
     secondBais.close()
     firstBais.close()
+
     joined
   }
 

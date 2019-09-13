@@ -4,21 +4,27 @@ import Speaker.textToSpeech
 
 object Generator {
 
-  val bell = """<audio src="https://storage.googleapis.com/org_mackler_sounds/rollout.mp3">
-                  <break time="3s" />
-                </audio>"""
-
   def apply(exerciseName: String) {
-    println(s"processing exercise ${exerciseName}")
-    val items: Seq[Exercise.Item] = Exercise.read(exerciseName)
-    val countWidth = (items.length - 1).toString.length
-    println(s"there are ${items.length} items")
+    val items: Seq[Exercise.Item] = Exercise read exerciseName
+    val countWidth = (items.length - 1).toString.length // needed for zero-padded item numbers
+    println(s"Processing ${items.length} items in exercise ${exerciseName}")
+
     (0 until items.length) foreach { itemNumber =>
       val item = items(itemNumber)
-      val q: Array[Byte] =
-        textToSpeech(s"<speak> ${bell} ${item.prompt} <break time='2s'/> ${item.question} </speak>")
-      val a: Array[Byte] = textToSpeech(s"<speak> ${item.answer} </speak>")
-      val joined = Joiner.join(q, a)
+
+      val questionText = "<speak><prosody rate='slow'>" +
+                         item.question.mkString(" <break time='2s'/> ") +
+                         " </prosody></speak>"
+      val answerText1 = "<speak><prosody rate='x-slow'> " + item.answer + " </prosody></speak>"
+      val answerText2 = "<speak> " + item.answer + " </speak>"
+
+println(s"question text is $questionText")
+println(s"answe is ${item.answer}")
+      val q: Array[Byte] = textToSpeech(questionText)
+      val a1: Array[Byte] = textToSpeech(answerText1)
+      val a2: Array[Byte] = textToSpeech(answerText2)
+      val joined = Joiner.join(q, a1, a2)
+
       val itemName: String = exerciseName + "-" + s"%0${countWidth}d".format(itemNumber)
       Exercise.write(exerciseName, itemName, joined)
       joined.close()

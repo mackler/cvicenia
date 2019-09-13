@@ -4,23 +4,38 @@ import javax.sound.sampled.AudioInputStream
 import ws.schild.jave.{ Encoder, AudioAttributes, EncodingAttributes, MultimediaObject }
 
 import scala.io.Source
+
+import java.io.{ File, FileOutputStream, OutputStream }
+import java.util.regex.{ Matcher, Pattern }
 import javax.sound.sampled.AudioFileFormat.Type.WAVE
 import javax.sound.sampled.AudioSystem
-import java.io.{ File, FileOutputStream, OutputStream }
 
 object Exercise {
 
-  case class Item(prompt: String, question: String, answer: String)
+  case class Item(question: Vector[String], answer: String)
 
-  /** Read three-part items from a tab-separated file, ignoring lines that are
-    * either empty or begin with a '#' character. */
+  val sentence = Pattern.compile("""\s*(.+?[.?])\s*""")
+
+  /** Read multi-part items from a file of punctuation-separated lines,
+    * ignoring lines that are either empty or begin with a '#' character.
+    * The answer is the last sentence on the line.  The question is a Vector of
+    * all the sentences except the last. */
   def read(name: String): Seq[Item] = {
-    Source.fromResource(name + ".tsv").getLines.toSeq.filter { l =>
+    Source.fromResource(name + ".txt").getLines.toSeq.filter { l =>
       l.length > 0 && l(0) != '#'
-    } map { i =>
-        val elems = i.split('\t')
-        Item(elems(0), elems(1), elems(2))
+    } map { line =>
+      val matcher = sentence matcher line
+
+      @annotation.tailrec
+      def iter(acc: Vector[String] = Vector.empty[String]): Item = {
+        if (!matcher.find())
+          Item(acc dropRight 1, acc.last)
+        else
+          iter(acc :+ (matcher group 1))
       }
+
+      iter()
+    }
   }
 
   /** Write the given audio content as an MP3 file,
