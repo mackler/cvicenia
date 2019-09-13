@@ -4,6 +4,15 @@ import Speaker.textToSpeech
 
 object Generator {
 
+  /** Convert markdown emphases to HTML */
+  private def addEmphasis(s: String): String =
+    s.replaceAll("""\*\*([^*]*)\*\*""", """<emphasis level="string">>$1</emphasis>""").
+      replaceAll("""\*([^*]*)\*""", """<emphasis>$1</emphasis>""")
+
+  /** Remove markdown emphases */
+  private def removeEmphasis(s: String): String =
+    s.replaceAll("""\*""", "")
+
   def apply(exerciseName: String) {
     val items: Seq[Exercise.Item] = Exercise read exerciseName
     val countWidth = (items.length - 1).toString.length // needed for zero-padded item numbers
@@ -13,13 +22,11 @@ object Generator {
       val item = items(itemNumber)
 
       val questionText = "<speak><prosody rate='slow'>" +
-                         item.question.mkString(" <break time='1s'/> ") +
+                         addEmphasis(item.question.mkString(" <break time='1s'/> ")) +
                          " </prosody></speak>"
-      val answerText1 = "<speak><prosody rate='x-slow'> " + item.answer + " </prosody></speak>"
-      val answerText2 = "<speak><prosody rate='slow'> " + item.answer + " </speak>"
+      val answerText1 = "<speak><prosody rate='x-slow'> " + addEmphasis(item.answer) + " </prosody></speak>"
+      val answerText2 = "<speak><prosody rate='slow'> " + removeEmphasis(item.answer) + " </speak>"
 
-println(s"question text is $questionText")
-println(s"answe is ${item.answer}")
       val q: Array[Byte] = textToSpeech(questionText)
       val a1: Array[Byte] = textToSpeech(answerText1)
       val a2: Array[Byte] = textToSpeech(answerText2)
