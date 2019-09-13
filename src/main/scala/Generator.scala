@@ -36,7 +36,7 @@ object Generator {
       val a2: Array[Byte] = textToSpeech(answerText2)
       val joined = Joiner.join(q, a1, a2)
 
-      val itemName: String = exerciseName + "-" + s"%0${countWidth}d".format(itemNumber)
+      val itemName: String = s"%0${countWidth}d".format(itemNumber)
       Exercise.write(exerciseName, itemName, removePunctuation(item.answer), joined)
       joined.close()
     }
