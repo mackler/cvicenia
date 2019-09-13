@@ -39,10 +39,10 @@ object Exercise {
   }
 
   /** Write the given audio content as an MP3 file,
-    * named based on the exercise name and item number. */
-  def write(exerciseName: String, itemName: String, audioContent: AudioInputStream) {
+    * named based on the exercise name and item number, and answer text. */
+  def write(exerciseName: String, itemName: String, answerText: String, audioContent: AudioInputStream) {
     val outputFilenameWav = itemName + ".wav"
-    val outputFilenameMp3 = itemName + ".mp3"
+    val outputFilenameMp3 = itemName + " - " + answerText + ".mp3"
 
     val outputDirectory = new File("output/" + exerciseName)
     if (!outputDirectory.exists) {
