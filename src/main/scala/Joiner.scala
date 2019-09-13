@@ -8,6 +8,9 @@ import javax.sound.sampled.AudioSystem.getAudioInputStream
 
 object Joiner {
 
+  /** Duration of silence relative to speech it follows. */
+  val silenceRatio = 1.2
+
   def join(first: Array[Byte], second: Array[Byte], third: Array[Byte]): AudioInputStream = {
     val firstBais = new ByteArrayInputStream(first)
     val firstAis = getAudioInputStream(firstBais)
@@ -20,7 +23,7 @@ object Joiner {
     val thirdFrameLength = thirdAis.getFrameLength
 
     def silentWavBytes(ais: AudioInputStream): Array[Byte] = {
-      val silenceByteLength = ais.getFrameLength * ais.getFormat.getFrameSize * 1.5
+      val silenceByteLength = ais.getFrameLength * ais.getFormat.getFrameSize * silenceRatio
       first.take(44) ++ Array.fill[Byte](silenceByteLength.toInt)(0)
     }
 
@@ -38,7 +41,9 @@ object Joiner {
     val joined: AudioInputStream = new AudioInputStream(
       new SequenceInputStream(toBeJoined.asJavaEnumeration),
       firstAis.getFormat,
-      firstAis.getFrameLength + (secondFrameLength * 4).toInt + (thirdFrameLength * 2.5).toInt
+      firstAis.getFrameLength +
+        (secondFrameLength * (1 + 2 * silenceRatio)).toInt +
+        (thirdFrameLength * (1 + silenceRatio)).toInt
     )
 
     silenceThree.close()

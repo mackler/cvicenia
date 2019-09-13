@@ -13,10 +13,10 @@ object Generator {
       val item = items(itemNumber)
 
       val questionText = "<speak><prosody rate='slow'>" +
-                         item.question.mkString(" <break time='2s'/> ") +
+                         item.question.mkString(" <break time='1s'/> ") +
                          " </prosody></speak>"
       val answerText1 = "<speak><prosody rate='x-slow'> " + item.answer + " </prosody></speak>"
-      val answerText2 = "<speak> " + item.answer + " </speak>"
+      val answerText2 = "<speak><prosody rate='slow'> " + item.answer + " </speak>"
 
 println(s"question text is $questionText")
 println(s"answe is ${item.answer}")
