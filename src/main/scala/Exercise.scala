@@ -4,6 +4,7 @@ import javax.sound.sampled.AudioInputStream
 import ws.schild.jave.{ Encoder, AudioAttributes, EncodingAttributes, MultimediaObject }
 
 import scala.io.Source
+import scala.util.{ Failure, Success, Try }
 
 import java.io.{ File, FileOutputStream, OutputStream }
 import java.util.regex.{ Matcher, Pattern }
@@ -20,8 +21,8 @@ object Exercise {
     * ignoring lines that are either empty or begin with a '#' character.
     * The answer is the last sentence on the line.  The question is a Vector of
     * all the sentences except the last. */
-  def read(name: String): Seq[Item] = {
-    Source.fromResource(name + ".txt").getLines.toSeq.filter { l =>
+  def read(name: String): Try[Generator] = Try {
+    Source.fromResource(name + ".txt").getLines.toSeq filter { l =>
       l.length > 0 && l(0) != '#'
     } map { line =>
       val matcher = sentence matcher line
@@ -36,6 +37,12 @@ object Exercise {
 
       iter()
     }
+  } match {
+    case f:Failure[Seq[Item]] => Option(f.exception.getMessage) match {
+      case Some(e) => Failure[Generator](f.exception)
+      case None => Failure(new java.io.FileNotFoundException(s"failed to read exercise ${name}"))
+    }
+    case s:Success[Seq[item]] => s map (new Generator(name, _))
   }
 
   /** Write the given audio content as an MP3 file,
