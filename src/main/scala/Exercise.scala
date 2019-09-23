@@ -15,7 +15,7 @@ object Exercise {
 
   case class Item(question: Vector[String], answer: String)
 
-  val sentence = Pattern.compile("""\s*(.+?[.?])\s*""")
+  val sentence = Pattern.compile("""\s*(.+?([.?]|$))\s*""")
 
   /** Read multi-part items from a file of punctuation-separated lines,
     * ignoring lines that are either empty or begin with a '#' character.
