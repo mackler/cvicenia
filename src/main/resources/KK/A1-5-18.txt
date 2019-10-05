@@ -1,7 +1,7 @@
 # A1 st 79 lk 5 cv 18 : Akuzatív
-To je známy fotograf Kamil Čech.  Koho hľada Róbert?  Róbert hľada známeho fotografa Kamila Čecha.
-To je múdry profesor Ján Novák.  Koho hľada Róbert?  Róbert hľada múdreho profesora Jána Nováka.
-To je pán inžinier Stanislav Kocka.  Koho hľada Róbert?  Róbert hľada pána inžiniera Stanislava Kocku.
-To je dobrý priateľ Andrej Tichý.  Koho hľada Róbert?  Róbert hľada dobrého priateľa Andreja Tichého.
-To je slávny futbalista Ivan Hrozný.  Koho hľada Róbert?  Róbert hľada slávneho futbalistu Ivana Hrozného.
-To je slovenský moderátor Peter Maroš.  Koho hľada Róbert?  Róbert hľada známeho moderátora Petra Maroša.
+To je známy fotograf Kamil Čech.  Koho hľadá Róbert?  Róbert hľadá známeho fotografa Kamila Čecha.
+To je múdry profesor Ján Novák.  Koho hľadá Róbert?  Róbert hľadá múdreho profesora Jána Nováka.
+To je pán inžinier Stanislav Kocka.  Koho hľadá Róbert?  Róbert hľadá pána inžiniera Stanislava Kocku.
+To je dobrý priateľ Andrej Tichý.  Koho hľadá Róbert?  Róbert hľadá dobrého priateľa Andreja Tichého.
+To je slávny futbalista Ivan Hrozný.  Koho hľadá Róbert?  Róbert hľadá slávneho futbalistu Ivana Hrozného.
+To je slovenský moderátor Peter Maroš.  Koho hľadá Róbert?  Róbert hľadá slovenského moderátora Petra Maroša.

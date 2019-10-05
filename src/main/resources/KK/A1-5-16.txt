@@ -2,14 +2,14 @@
 # singulár
 To je pekná pieseň.  Čo spieva Adam?  Adam spieva peknú pieseň.
 To je správna cesta.  Čo pozná šofér?  Šofér pozná správnu cestu.
-To je štát.  Čo reprezentuje Prezident?  Prezident reprezentuje štát.
-To je matematika.  Čo učí Profesor Novák?  Profesor Novák učí matematiku.
-To je angličtina.  Čo sa uči mladý asistent?  Mladý asistent sa uči angličtinu.
+To je štát.  Čo reprezentuje prezident?  Prezident reprezentuje štát.
+To je matematika.  Čo učí profesor Novák?  Profesor Novák učí matematiku.
+To je angličtina.  Čo sa učí mladý asistent?  Mladý asistent sa učí angličtinu.
 To je medicína.  Čo študuje Denis v Nitre?  Denis študuje v Nitre medicínu.
 To je ovocný jogurt.  Čo raňajkuje?  Raňajkuje ovocný jogurt.
-To je čaj.  Čo iba piješ ráno?  Ráno pijem iba čierny čaj.
+To je čierny čaj.  Čo iba piješ ráno?  Ráno pijem iba čierny čaj.
 To je zelenina a ovocie.  Čo máš rád?  Mám rád zeleninu a ovocie.
-To je rýchletango.  Čo tancujú manželia?  Manželia tancujú rýchle tango.
+To je rýchle tango.  Čo tancujú manželia?  Manželia tancujú rýchle tango.
 To je kvalitný počítač.  Čo kupuje klient?  Klient kupuje kvalitný počítač.
 # plurál
 To sú turistické informácie.  Čo hľadá turista?  Turista hľadá turistické informácie.
@@ -21,4 +21,6 @@ To sú bolonské špagety.  Čo varí kuchár?  Kuchár varí bolonské špagety
 To sú televízne seriály.  Čo pozerá otec?  Otec pozerá televízne seriály.
 To sú rýchle autá.  Čo kontrolujú policajti?  Policajti kontrolujú rýchle autá.
 To sú malé deti.  Čo hľadajú rodičia?  Rodičia hľadajú malé deti.
-To sú dva dni a dve noci.  No čo príde?  Príde na dva dni a dve noci.
+# majka says still errors here
+#To sú dva dni a dve noci.  Na čo príde?  Príde na dva dni a dve noci.
+#^^^^^                      ?????

@@ -1,9 +1,9 @@
 # A1 st 79 lk 5 cv 19 : Akuzatív
 # singulár
-To je slovenský kolega.  Koho majú radi manažéri?  Manažéri majú radi slovenkého kolegu.
+To je slovenský kolega.  Koho majú radi manažéri?  Manažéri majú radi slovenského kolegu.
 To je nový ekonóm.  Koho teraz majú vo firme?  Teraz majú vo firme nového ekonóma.
-To je obľúbený hokejistu.  Koho majú deti?  Deti majú obľúbeného hokejistu.
-To je šikovný kuchár.  Koho hľadajú v reštaurácii?  V reštaurácii hľadajú šikovného kuchara.
+To je obľúbený hokejista.  Koho majú deti?  Deti majú obľúbeného hokejistu.
+To je šikovný kuchár.  Koho hľadajú v reštaurácii?  V reštaurácii hľadajú šikovného kuchára.
 To je mladý sprievodca.  Na koho čakajú turisti?  Turisti čakajú na mladého sprievodcu.
 To je zahraničný študent.  Koho učí lektor?  Lektor učí zahraničného študenta.
 # plurál

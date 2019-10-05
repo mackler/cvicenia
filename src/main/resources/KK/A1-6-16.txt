@@ -1,6 +1,7 @@
 # A1 st 97 lk 6 cv 16 : Inštrumentál
 Toto je kurča a to je ryša.  Čo si dáš?  Dám si kurča s ryžou.
 Toto je kola a to je ľad.  Čo si dáš?  Dám si kolu s ľadom.
+# Majka says there's an error in next line, but where?
 Toto sú palacinky a to je čokoláda.  Čo si dáš?  Dám si palacinky s čokoládou.
 Toto je káva a to je mlieko.  Čo si dáš?  Dám si kávu s mliekom.
 Toto je vyprážaný syr a to sú varené zemiaky.  Čo si dáš?  Dám si vyprážaný syr s varenými zemiakmi.
