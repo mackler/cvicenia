@@ -21,19 +21,22 @@ class Generator(exerciseName: String, items: Seq[Item]) {
       val questionSpeech: Array[Byte] = textToSpeech(questionText)
       val answerSpeech1: Array[Byte] = textToSpeech(answerText1)
 
-      val joined = {
+      val (joined, nameWithNumber) = {
         item.question.last.last match {
           case '?' => // if the question ends with a question mark, play the answer twice
             val answerText2 = "<speak><prosody rate='slow'> " + removeEmphases(item.answer) + " </speak>"
             val answerSpeech2: Array[Byte] = textToSpeech(answerText2)
-            Joiner.join(questionSpeech, answerSpeech1, answerSpeech2)
+            (Joiner.join(questionSpeech, answerSpeech1, answerSpeech2), true)
           case _ =>
-            Joiner.join(questionSpeech, answerSpeech1)
+            (Joiner.join(questionSpeech, answerSpeech1), false)
         }
       }
 
-      val itemName: String = s"%0${countWidth}d".format(itemNumber)
-      Exercise.write(exerciseName, itemName, removePunctuation(item.answer), joined)
+      val itemNumberString: String =
+        if (nameWithNumber)
+          s"%0${countWidth}d".format(itemNumber)
+        else ""
+      Exercise.write(exerciseName, itemNumberString, removePunctuation(item.answer), joined)
       joined.close()
     }
   }
@@ -52,6 +55,6 @@ object Generator {
 
   /** Remove periods and asterisks for use in filenames */
   private def removePunctuation(s: String): String =
-    removeEmphases(s).replaceAll("""\.""", "")
+    removeEmphases(s).replaceAll("""\.""", "").replaceAll("""<[^>]*>""", "")
 
 }
