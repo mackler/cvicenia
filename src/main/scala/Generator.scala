@@ -14,15 +14,23 @@ class Generator(exerciseName: String, items: Seq[Item]) {
       val item = items(itemNumber)
 
       val questionText = "<speak><prosody rate='slow'>" +
-      addEmphases(item.question.mkString(" <break time='1s'/> ")) +
-      " </prosody></speak>"
+                          addEmphases(item.question.mkString(" <break time='1s'/> ")) +
+                         " </prosody></speak>"
       val answerText1 = "<speak><prosody rate='x-slow'> " + addEmphases(item.answer) + " </prosody></speak>"
-      val answerText2 = "<speak><prosody rate='slow'> " + removeEmphases(item.answer) + " </speak>"
 
-      val q: Array[Byte] = textToSpeech(questionText)
-      val a1: Array[Byte] = textToSpeech(answerText1)
-      val a2: Array[Byte] = textToSpeech(answerText2)
-      val joined = Joiner.join(q, a1, a2)
+      val questionSpeech: Array[Byte] = textToSpeech(questionText)
+      val answerSpeech1: Array[Byte] = textToSpeech(answerText1)
+
+      val joined = {
+        item.question.last.last match {
+          case '?' => // if the question ends with a question mark, play the answer twice
+            val answerText2 = "<speak><prosody rate='slow'> " + removeEmphases(item.answer) + " </speak>"
+            val answerSpeech2: Array[Byte] = textToSpeech(answerText2)
+            Joiner.join(questionSpeech, answerSpeech1, answerSpeech2)
+          case _ =>
+            Joiner.join(questionSpeech, answerSpeech1)
+        }
+      }
 
       val itemName: String = s"%0${countWidth}d".format(itemNumber)
       Exercise.write(exerciseName, itemName, removePunctuation(item.answer), joined)
