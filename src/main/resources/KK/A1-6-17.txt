@@ -2,8 +2,8 @@
 # singulár
 To je pero.  Čím píšeš?  Píšem perom.
 To je ceruzka.  Čím nepíšeš?  Nepíšem ceruzkou.
-# Majka says "Češe syna" is error, but that's what's in the book
-#To je hrebeň.  Čím češe syna?  Češe syna hrebeňom.
+# Majka says "Češe syna" is a question (should be Syna češe), but that's what's in the book
+To je hrebeň.  Čím češe syna?  Češe syna hrebeňom.
 To sú vlak a lietadlo.  Čím rád cestuješ?  Rád cestujem vlakom a lietadlom.
 To sú profesorka a profesor.  S kým sa stretneš?  Stretnem sa s profesorkou a s profesorom.
 To sú sestra a brat.  S Kým bývaš?  Bývam so sestrou a s bratom.
@@ -15,6 +15,6 @@ To sú kamaráti.  S kým sa rozprávaš?  Rozprávam sa s kamarátmi.
 To sú japonskí turisti.  S kým hovoríš?  Hovorím s japonskými turistami.
 To sú nové kolegyne.  S kým ideš na večeru?  Idem na večeru s novými kolegyňami.
 To sú jej starí kolegovia.  S kým pozveš Janu?  Pozvem Janu s jej starými kolegami.
-# Majka says has error
-#To sú zaujímavé miesta.  S čím je toto mapa?  Toto je mapa so zaujímavými miestami.
-#                         ^^^^^^^^^^^^^^^^^^^
+To sú zaujímavé miesta.  S čím je toto mapa?  Toto je mapa so zaujímavými miestami.
+# Majka suggests this (non inštrumentál) alternative
+To sú zaujímavé miesta. Čo je na tej mape? Na tej mape sú zaujímavé miesta. 

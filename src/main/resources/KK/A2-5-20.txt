@@ -1,7 +1,10 @@
 # A2 st 87 lk 5 cv 20 : Genitív
-#To je nebezpečný pavúk.  Čoho sa bojíš?  Bojím sa nebezpečného povúka.
-#To je malý priestor.  Čoho sa bojím?  Bojíš sa malého priestoru.
-#To je veľká výška.  Čoho sa bojí?  Bojí sa veľkej výšky.
+To je nebezpečný pavúk.  Čoho sa bojíš?  Bojím sa nebezpečného povúka.
+To je malý priestor.  Čoho sa bojím?  Bojíš sa malého priestoru.
+To je veľká výška.  Čoho sa bojí?  Bojí sa veľkej výšky.
+# Book says každy, which would result in the following meaningless item
 #To je každý pes.  Čoho sa bojíte?  Bojíme sa každého psa.
+# So Majka suggests this alternative
+To je zlý pes. Čoho sa bojíte? Bojíme sa zlého psa.
 To je slnečné svetlo.  Čoho sa bojíme?  Bojíte sa slnečného svetla.
-#To sú mnohí ľudia.  Koho sa boja?  Boja sa mnohých ľudí.
+To sú mnohí ľudia.  Koho sa boja?  Boja sa mnohých ľudí.

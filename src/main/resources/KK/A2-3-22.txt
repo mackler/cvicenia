@@ -4,12 +4,11 @@
 #To je otec.  Komu som na Vianoce kúpil novú knihu?  Na Vianoce som otcovi kúpil novú knihu.
 #To je Carlo.  Komu ste povedali o vašej ceste na Slovensko?  Povedali sme Carlovi o našej ceste na Slovensko.
 #To je Johanna.  Komu písala Zuzana e-mail?  Zuzana písala Johanne e-mail.
-# Majka says one of next two lines has error but what?
 #To je kolegyňa.  Komu poslal v prílohe projekt?  Poslal kolegyni v prílohe projekt.
 #To je dedo.  Komu telefonoval Zuzanin brat včera večer?  Zuzanin brat telefonoval dedovi včera večer.
 #To je vnučka.  Komu pripravila stará mama obed?  Stará mama pripravila vnučke obed.
 #To sú rodičia.  Komu ste sľúbili prísť na Vianoce domov?  Sľúbili sme rodičom prísť na Vianoce domov.
-# Majka says error, but what?
 #To je Alica.  Komu sa páčili moje dom a záhrada?  Alici sa páčili tvoje dom a záhrada.
-#              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# Majka says it should be:
+#              Komu sa páči tvoj dom a záhrada? Alici sa páči môj dom a záhrada.
 #To je bratranec.  Komu si dala telefónne číslo?  Dala som bratrancovi telefónne číslo.

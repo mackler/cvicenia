@@ -1,11 +1,9 @@
 # A2 st 89 lk 5 cv 21 : Genitív
 To je červené víno.  Čoho máte málo?  Máme málo červeného vína.
 To je pomarančový džús.  Čoho potrebujete viac?    Potrebujeme viac pomarančovéha džúsu.
-#To je neperlivá minerálka.  Čoho máme dosť?  Máte dosť neperlivej minerálky.
-#To je čierna káva.  Čoho si dáš trochu?  Dám si trochu čiernej kávy.
-# Majka says this an error, but the answer is right out of the book
-#To je citrónový likér.  Čoho nechcem viac?  Nechceš viac citrónového likéru.
-#                             ???????        ???????
-#To je vysoká škola.  Čoho je veľa na Slovensku?  Na Slovensku je veľa vysokých škôl.
-#To je veľké jablko.  Čoho potrebujete päť na štrúdľu?  Na štrúdľu potrebujeme päť veľkých jabĺk.
-#To je turistická mapa.  Čoho má mnoho dobrý turista?  Dobrý turista má mnoho turistických máp.
+To je neperlivá minerálka.  Čoho máme dosť?  Máte dosť neperlivej minerálky.
+To je čierna káva.  Čoho si dáš trochu?  Dám si trochu čiernej kávy.
+To je citrónový likér.  Čoho nechcem viac?  Nechceš viac citrónového likéru.
+To je vysoká škola.  Čoho je veľa na Slovensku?  Na Slovensku je veľa vysokých škôl.
+To je veľké jablko.  Čoho potrebujete päť na štrúdľu?  Na štrúdľu potrebujeme päť veľkých jabĺk.
+To je turistická mapa.  Čoho má mnoho dobrý turista?  Dobrý turista má mnoho turistických máp.
