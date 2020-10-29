@@ -23,7 +23,7 @@ class Generator(exerciseName: String, items: Seq[Item]) {
 
       val (joined, nameWithNumber) = {
         item.question.last.last match {
-          case '?' => // if the question ends with a question mark, play the answer twice
+          case '?' | '.' => // if the question ends with a question mark or period, play the answer twice
             val answerText2 = "<speak><prosody rate='slow'> " + removeEmphases(item.answer) + " </speak>"
             val answerSpeech2: Array[Byte] = textToSpeech(answerText2)
             (Joiner.join(questionSpeech, answerSpeech1, answerSpeech2), true)
@@ -51,10 +51,10 @@ object Generator {
 
   /** Remove markdown emphases */
   private def removeEmphases(s: String): String =
-    s.replaceAll("""\*""", "")
+    s.replaceAll("""<[^>]*>""", "")
 
-  /** Remove periods and asterisks for use in filenames */
+  /** Remove periods, question-marks, and asterisks for use in filenames */
   private def removePunctuation(s: String): String =
-    removeEmphases(s).replaceAll("""\.""", "").replaceAll("""<[^>]*>""", "")
+    removeEmphases(s).replaceAll("""[.?*]""", "")
 
 }

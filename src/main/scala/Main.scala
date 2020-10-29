@@ -23,7 +23,7 @@ object Main extends App {
         }
       } match {
         case Left(exceptions) => exceptions foreach { e => System.err.println(e.getMessage) }
-        case Right(exercises) => exercises foreach { _. generate() }
+        case Right(exercises) => exercises foreach { _.generate() }
       }
   }
 
